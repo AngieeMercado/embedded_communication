@@ -12,7 +12,7 @@
 * Include files
 *****************************************************************************************************/
 /** Own headers */
-#include  "Uart_Ctrl.h"
+#include "Uart_Ctrl.h"
 #include "Uart.h"
 
 /*****************************************************************************************************
@@ -42,50 +42,49 @@ uint8_t rxVal = 0;
 uint8_t enablestate = true;
 uint8_t stateTx = 0;
 uint8_t stateBuff = 0;
-uint8_t stateBaud =0;
+uint8_t stateBaud = 0;
 
 /****************************************************************************************************
 * Code of module wide FUNCTIONS
 *****************************************************************************************************/
 
-void UartCtrl_2ms( void )
+void UartCtrl_2ms(void)
 {
-    stateTx = Uart_SendByte(UART2_ctrl, messageBuff1[indx]);
-    if( stateTx == 0 )
-    {
-      indx++;
-    }
-    
-    if( indx >= sizeof(messageBuff1) )
-    {
-      indx = 0;
-    }
-   
-    rxVal = Uart_GetByte(UART2_ctrl);
-    
-    printf("%c", rxVal);
-  
+  stateTx = Uart_SendByte(UART2_ctrl, messageBuff1[indx]);
+  if (stateTx == 0)
+  {
+    indx++;
+  }
+
+  if (indx >= sizeof(messageBuff1))
+  {
+    indx = 0;
+  }
+
+  rxVal = Uart_GetByte(UART2_ctrl);
+
+  printf("%c", rxVal);
 }
 
-void UartCtrl_50ms( void )
+void UartCtrl_50ms(void)
 {
-   //stateBaud=Uart_SetBaudrate (UART4_ctrl,9600);
+  //stateBaud=Uart_SetBaudrate (UART4_ctrl,9600);
 }
 
-void UartCtrl_100ms( void )
+void UartCtrl_100ms(void)
 {
 
   stateBuff = Uart_SendBuffer(UART4_ctrl, &messageBuff2[0], sizeof(messageBuff2));
-  
-  if( stateBuff == 0 )
+
+  if (stateBuff == 0)
   {
     printf("\n\r-Buffer sent-\n\r");
   }
 }
 
-void UartCtrl_TriggerEvent( void )
+void UartCtrl_TriggerEvent(void)
 {
-  if( enablestate == true )
+  if (enablestate == true)
   {
     enablestate = false;
   }
@@ -93,8 +92,7 @@ void UartCtrl_TriggerEvent( void )
   {
     enablestate = true;
   }
-  
-  
+
   Uart_SetRxEnable(UART2_ctrl, enablestate);
   //Uart_EnableInt(UART2_ctrl, UART_CFG_INT_TXRDY | UART_CFG_INT_RXRDY, enablestate);
   /* Example Code, need to be removed */

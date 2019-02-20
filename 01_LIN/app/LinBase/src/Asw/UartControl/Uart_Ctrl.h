@@ -8,7 +8,7 @@
 */
 /****************************************************************************************************/
 
-#ifndef __UART_CTRL_H        /*prevent duplicated includes*/
+#ifndef __UART_CTRL_H /*prevent duplicated includes*/
 #define __UART_CTRL_H
 
 /*****************************************************************************************************
@@ -38,11 +38,10 @@
 *****************************************************************************************************/
 
 /** Uart Control Exported Functions */
-extern void UartCtrl_2ms( void );
-extern void UartCtrl_50ms( void );
-extern void UartCtrl_100ms( void );
-extern void UartCtrl_TriggerEvent( void );
-
+extern void UartCtrl_2ms(void);
+extern void UartCtrl_50ms(void);
+extern void UartCtrl_100ms(void);
+extern void UartCtrl_TriggerEvent(void);
 
 /**************************************************************************************************/
 
