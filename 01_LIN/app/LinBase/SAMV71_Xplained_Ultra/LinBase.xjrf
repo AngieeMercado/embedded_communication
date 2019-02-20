@@ -90,9 +90,9 @@
       </PI.11>
       <PI.12>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>111</L>
+       <L>135</L>
        <P>..\src\Bsw\Ecual\Com\Linf\Lin.c</P>
-       <VL>103</VL>
+       <VL>130</VL>
       </PI.12>
       <PI.13>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -363,9 +363,9 @@
       </PI.6>
       <PI.7>
        <Bookmarks_num_>0</Bookmarks_num_>
-       <L>236</L>
+       <L>306</L>
        <P>..\src\Bsw\Mcal\Com\Uart\Uart.c</P>
-       <VL>228</VL>
+       <VL>297</VL>
       </PI.7>
       <PI.8>
        <Bookmarks_num_>0</Bookmarks_num_>
@@ -854,7 +854,7 @@
        <RelativeFileName>..\src\Bsw\Ecual\Com\Linf\Lin.c</RelativeFileName>
       </ActiveDocument>
       <Editor.0>
-       <FileBarIndex>2</FileBarIndex>
+       <FileBarIndex>1</FileBarIndex>
        <RectPosBottom>394</RectPosBottom>
        <RectPosLeft>0</RectPosLeft>
        <RectPosRight>964</RectPosRight>
@@ -918,7 +918,7 @@
        <RelativeFileName>..\..\..\toolset\gcc\startup_sam.c</RelativeFileName>
       </Editor.15>
       <Editor.2>
-       <FileBarIndex>1</FileBarIndex>
+       <FileBarIndex>2</FileBarIndex>
        <RectPosBottom>426</RectPosBottom>
        <RectPosLeft>32</RectPosLeft>
        <RectPosRight>996</RectPosRight>
@@ -926,7 +926,7 @@
        <RelativeFileName>..\src\Asw\UartControl\Uart_Ctrl.c</RelativeFileName>
       </Editor.2>
       <Editor.3>
-       <FileBarIndex>6</FileBarIndex>
+       <FileBarIndex>4</FileBarIndex>
        <RectPosBottom>554</RectPosBottom>
        <RectPosLeft>160</RectPosLeft>
        <RectPosRight>1124</RectPosRight>
@@ -950,7 +950,7 @@
        <RelativeFileName>..\src\Bsw\Ecual\Com\Linf\Lin_Cfg.c</RelativeFileName>
       </Editor.5>
       <Editor.6>
-       <FileBarIndex>4</FileBarIndex>
+       <FileBarIndex>5</FileBarIndex>
        <RectPosBottom>490</RectPosBottom>
        <RectPosLeft>96</RectPosLeft>
        <RectPosRight>1060</RectPosRight>
@@ -958,7 +958,7 @@
        <RelativeFileName>..\src\Bsw\Ecual\Com\Linf\Lin_Cfg.h</RelativeFileName>
       </Editor.6>
       <Editor.7>
-       <FileBarIndex>5</FileBarIndex>
+       <FileBarIndex>6</FileBarIndex>
        <RectPosBottom>458</RectPosBottom>
        <RectPosLeft>64</RectPosLeft>
        <RectPosRight>1028</RectPosRight>
@@ -1065,6 +1065,30 @@
          <Scale>0</Scale>
         </ExpressionDisplay>
        </Watch.2>
+       <Watch.3>
+        <WatchName>LinState</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.3>
+       <Watch.4>
+        <WatchName>DataSentCtrlCounter</WatchName>
+        <ExpressionDisplay>
+         <Color>0</Color>
+         <ColorBack>16769216</ColorBack>
+         <ColorText>0</ColorText>
+         <Enabled>0</Enabled>
+         <Hi type="D">100.0000000000000000</Hi>
+         <Lo type="D">0.0000000000000000</Lo>
+         <Scale>0</Scale>
+        </ExpressionDisplay>
+       </Watch.4>
       </WatchPane.2>
      </Watches>
      <Watches2>
@@ -1490,7 +1514,7 @@
          <Condition></Condition>
          <Condition_Count>0</Condition_Count>
          <ConditionEnabled>False</ConditionEnabled>
-         <Name>&quot;..\src\Bsw\Ecual\Com\Linf\Lin.c&quot;::145</Name>
+         <Name>&quot;..\src\Bsw\Ecual\Com\Linf\Lin.c&quot;::136</Name>
         </__>
        </BP.4>
       </Fetch>

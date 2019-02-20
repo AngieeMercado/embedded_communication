@@ -352,7 +352,7 @@ void Uart_Isr(uint8_t Channel)
   if (LocUartLogicChannel < NumberOfChannels)
     UartStatus[LocUartLogicChannel].TriggerCounter++;
 
-  NVIC_DisableIRQ(UartIRQS[Channel]);
+  // NVIC_DisableIRQ(UartIRQS[Channel]);
 }
 
 void UART0_Handler(void)
