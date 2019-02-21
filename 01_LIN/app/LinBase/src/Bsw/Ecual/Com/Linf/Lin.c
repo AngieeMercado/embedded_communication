@@ -40,6 +40,9 @@ uint8_t wait_for_response = 1;
 uint8_t **Get_LinSduPtr;
 Std_ReturnType ReturnCode = 0;
 
+uint8_t responseLength = 0;
+uint8_t DataReceivedCtrlCounter = 0;
+
 /*****************************************************************************************************
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
@@ -76,7 +79,6 @@ void Lin_StateHandler(void)
             break;
         }
         LinState = SEND_SYNC;
-        // Lin_StateHandler();
         break;
     case SEND_SYNC:
         ReturnCode = Uart_SendByte(Lin_Channel, 0x55);
@@ -87,18 +89,8 @@ void Lin_StateHandler(void)
             break;
         }
         LinState = SEND_PID;
-        // Lin_StateHandler();
         break;
     case SEND_PID:
-        /*
-            For the project you need to consider if you will wait for a
-            response or will send a response,
-            there fore LinState should be changed accordingly.
-            e.g. LinState = SEND_RESPONSE or LinState = GET_RESPONSE
-            (additional state to handle RX from slaves)
-            If GET_RESPONSE then Tx interrupts should be disabled,
-            and Rx interrupts enabled. Both isr's should call Lin_Isr();
-            */
         ReturnCode = Uart_SendByte(Lin_Channel, Lin_PID);
         if (ReturnCode == E_NOT_OK)
         {
@@ -117,7 +109,6 @@ void Lin_StateHandler(void)
             Uart_EnableInt(Lin_Channel, UART_CFG_INT_RXRDY, 1);
             Uart_EnableInt(Lin_Channel, UART_CFG_INT_TXRDY, 0);
         }
-        // Lin_StateHandler();
         break;
     case SEND_RESPONSE:
         if (DataSentCtrlCounter < Lin_SduDataLength)
@@ -282,8 +273,25 @@ Std_ReturnType Lin_SendFrame(uint8_t Channel, LinPduType *PduInfoPtr)
  *  \param LinSduPtr
  */
 Std_ReturnType Lin_GetSlaveResponse(uint8_t Channel, uint8_t **LinSduPtr)
-{
-    uint8_t rxVal = Uart_GetByte(Channel);
+{  
+    if (responseLength == 0)
+    {
+        responseLength = Uart_GetByte(Channel);
+    }
+    else
+    {
+        if (DataReceivedCtrlCounter < responseLength)
+        {
+            *(LinSduPtr)[DataReceivedCtrlCounter] = Uart_GetByte(Channel);
+            DataReceivedCtrlCounter++;
+        }
+        else
+        {
+            LinState = SEND_IDLE;
+            DataReceivedCtrlCounter = 0;
+            responseLength = 0;
+        }
+    }
 }
 
 /**
