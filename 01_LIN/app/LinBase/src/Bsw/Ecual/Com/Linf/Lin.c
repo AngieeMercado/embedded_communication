@@ -40,6 +40,9 @@ uint8_t wait_for_response = 1;
 uint8_t **Get_LinSduPtr;
 Std_ReturnType ReturnCode = 0;
 
+
+uint8_t responseLength = 0;
+uint8_t DataReceivedCtrlCounter = 0; 
 /*****************************************************************************************************
 * Definition of module wide (CONST-) CONSTANTs 
 *****************************************************************************************************/
@@ -282,8 +285,25 @@ Std_ReturnType Lin_SendFrame(uint8_t Channel, LinPduType *PduInfoPtr)
  *  \param LinSduPtr
  */
 Std_ReturnType Lin_GetSlaveResponse(uint8_t Channel, uint8_t **LinSduPtr)
-{
-    uint8_t rxVal = Uart_GetByte(Channel);
+{  
+    if (responseLength == 0)
+    {
+        responseLength = Uart_GetByte(Channel);
+    }
+    else
+    {
+        if (DataReceivedCtrlCounter < responseLength)
+        {
+            *(LinSduPtr)[DataReceivedCtrlCounter] = Uart_GetByte(Channel);
+            DataReceivedCtrlCounter++;
+        }
+        else
+        {
+            LinState = SEND_IDLE;
+            DataReceivedCtrlCounter = 0;
+            responseLength = 0;
+        }
+    }
 }
 
 /**
