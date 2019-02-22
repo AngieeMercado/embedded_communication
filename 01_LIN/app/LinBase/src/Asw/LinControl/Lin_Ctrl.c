@@ -53,7 +53,7 @@ void LinCtrl_2ms(void)
   LinPduType pduInfo = {
       9,
       LIN_CLASSIC_CS,
-      LIN_MASTER_RESPONSE,
+      LIN_SLAVE_RESPONSE,
       sizeof(messageBuffLin1) - 1, /* minus one to remove the null termination character */
       &messageBuffLin1[0],
   };

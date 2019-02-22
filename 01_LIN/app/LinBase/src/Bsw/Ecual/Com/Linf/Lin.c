@@ -274,13 +274,9 @@ Std_ReturnType Lin_SendFrame(uint8_t Channel, LinPduType *PduInfoPtr)
  */
 Std_ReturnType Lin_GetSlaveResponse(uint8_t Channel, uint8_t **LinSduPtr)
 {  
-    if (responseLength == 0)
+    if (Lin_ResponseType == LIN_SLAVE_RESPONSE)
     {
-        responseLength = Uart_GetByte(Channel);
-    }
-    else
-    {
-        if (DataReceivedCtrlCounter < responseLength)
+        if (DataReceivedCtrlCounter < Lin_SduDataLength)
         {
             *(LinSduPtr)[DataReceivedCtrlCounter] = Uart_GetByte(Channel);
             DataReceivedCtrlCounter++;
@@ -289,7 +285,6 @@ Std_ReturnType Lin_GetSlaveResponse(uint8_t Channel, uint8_t **LinSduPtr)
         {
             LinState = SEND_IDLE;
             DataReceivedCtrlCounter = 0;
-            responseLength = 0;
         }
     }
 }
